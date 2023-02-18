@@ -1,0 +1,94 @@
+>D 25
+pin1=5
+pin2=4
+pin5=14
+pcurr=0
+sw1=-500
+sw2=-100
+sw3=-20
+sw4=20
+sw5=40
+sw6=120
+
+>B
+=>sensor53 r
+spinm(pin1 O)
+spinm(pin2 O)
+spinm(pin5 O)
+spin(pin1 1)
+spin(pin2 1)
+spin(pin5 1)
+
+>T
+pcurr=0-SM#16_7_0
+
+>M 1
++1,3,o,0,9600,SM,1
+1,1-0:1.8.0*255(@1.000,Energie Bezug,kWh,1_8_0,3
+1,1-0:2.8.0*255(@1.000,Energie Export,kWh,2_8_0,3
+1,1-0:16.7.0*255(@1,Leistung,W,16_7_0,18
+1,1-0:36.7.0*255(@1,Leistung L1,W,36_7_0,18
+1,1-0:56.7.0*255(@1,Leistung L2,W,56_7_0,18
+1,1-0:76.7.0*255(@1,Leistung L3,W,76_7_0,18
+1,1-0:32.7.0*255(@1,Spannung L1,V,32_7_0,1
+1,1-0:52.7.0*255(@1,Spannung L2,V,52_7_0,1
+1,1-0:72.7.0*255(@1,Spannung L3,V,72_7_0,1
+1,1-0:96.1.0*255(@#),Identifikation,,96_1_0,0
+
+>S
+if pcurr<sw1
+then
+spin(pin5 1)
+spin(pin2 1)
+spin(pin1 1)
+endif
+if pcurr>=sw1
+and pcurr<sw2
+then
+spin(pin5 1)
+spin(pin2 1)
+spin(pin1 0)
+endif
+if pcurr>=sw2
+and pcurr<sw3
+then
+spin(pin5 1)
+spin(pin2 0)
+spin(pin1 1)
+endif
+if pcurr>=sw3
+and pcurr<0
+then
+spin(pin5 1)
+spin(pin2 0)
+spin(pin1 0)
+endif
+if pcurr>=0
+and pcurr<sw4
+then
+spin(pin5 0)
+spin(pin2 1)
+spin(pin1 1)
+endif
+if pcurr>=sw4
+and pcurr<sw5
+then
+spin(pin5 0)
+spin(pin2 1)
+spin(pin1 0)
+endif
+if pcurr>=sw5
+and pcurr<sw6
+then
+spin(pin5 0)
+spin(pin2 0)
+spin(pin1 1)
+endif
+if pcurr>=sw6
+then
+spin(pin5 0)
+spin(pin2 0)
+spin(pin1 0)
+endif
+
+#

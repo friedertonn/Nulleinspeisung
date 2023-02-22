@@ -123,9 +123,70 @@ Eine Bibliothek für die Dimmersteuerung ist auf Github zu finden:
 https://github.com/RobotDynOfficial/RBDDimmer
 Sie wurde für die Steuerung angepasst und befindet sich im Unterverzeichnis solardimmer.
 Die Aufgaben der Dimmersteuerung sind:
-- den Dimmer bei einem Stromüberschuss ein- und nach 10 Minuten Strombezug wieder auszuschalten,
+- den Dimmer bei einem Stromüberschuss ein- und nach 5 Minuten Strombezug wieder auszuschalten,
 - entsprechend des Stromüberschusses oder -bedarfes die Dimmer-Nachregelung in 3 Stufen vorzunehmen,
-- bei hohem Strombedarf den Dimmer sofort abzuschalten.
+- bei hohem Strombedarf (> 500 Watt) den Dimmer sofort abzuschalten.
+
+<table style="border-collapse: separate;
+  border-spacing: 0;
+  padding: 5px;">
+    <tbody>
+    <tr style="background-color: lightblue">
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2"><b> GPIO 5 (D1)</b> </td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2"><b> GPIO 4 (D2)</b> </td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2"><b> GPIO 14 (D5)</b> </td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;"><b>Dimmer-Regelung</b></td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">Dimmer ausschalten</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-20% dimmen</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-4% dimmen</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-1% dimmen</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">keine Regelung</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+1% dimmen</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+4% dimmen</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+20% dimmen</td>
+    </tr>
+    </tbody>
+</table>
 
 Die dazu notwendige Software **solardimmer.ino** befindet sich ebenfalls im Unterverzeichnis solardimmer.
 Das Kompilieren kann mit der Arduino-IDE erfolgen. Je nach der maximalen Leistung des angeschlossenen Verbrauchers

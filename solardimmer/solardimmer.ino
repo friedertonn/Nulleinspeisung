@@ -1,5 +1,5 @@
 // Projekt: https://github.com/friedertonn/Nulleinspeisung
-// solardimmer.ino  20.02.2023
+// solardimmer.ino  22.02.2023
 
 // Betrieb des RBDdimmers über 3 Steuerleitungen (Dimmersteuerung als Regelkreis)
 // D1 = GPIO 5
@@ -9,13 +9,13 @@
 // |  D5  |  D2  |  D1  | Bezug (-) / Einspeisung (+) |  Aktion            |
 // +------+------+------+--------------+--------------+--------------------+
 // | HIGH | HIGH | HIGH | Bezug        | < -500 Watt  | Dimmer %-Wert = 0  |
-// | HIGH | HIGH |  LOW | aus dem      | < -100 Watt  | -10% dimmen        |
-// | HIGH |  LOW | HIGH | öffentlichen | <  -20 Watt  |  -3% dimmen        |
+// | HIGH | HIGH |  LOW | aus dem      | < -100 Watt  | -20% dimmen        |
+// | HIGH |  LOW | HIGH | öffentlichen | <  -20 Watt  |  -4% dimmen        |
 // | HIGH |  LOW |  LOW | Netz         | <    0 Watt  |  -1% dimmen        |
 // |  LOW | HIGH | HIGH |--------------| <   20 Watt  | keine Nachregelung |
 // |  LOW | HIGH |  LOW | Einspeisung  | <   40 Watt  |  +1% dimmen        |
-// |  LOW |  LOW | HIGH | in das       | <  120 Watt  |  +3% dimmen        |
-// |  LOW |  LOW |  LOW | öff. Netz    | >= 120 Watt  | +10% dimmen        |
+// |  LOW |  LOW | HIGH | in das       | <  120 Watt  |  +4% dimmen        |
+// |  LOW |  LOW |  LOW | öff. Netz    | >= 120 Watt  | +20% dimmen        |
 // +------+------+------+--------------|--------------+--------------------+
 
 #include "RBDdimmer.h"
@@ -53,12 +53,12 @@ void loop()
   }
 
   if ((pin5 == 1) && (pin2 == 1) && (pin1 == 1)) wert = 0;
-  if ((pin5 == 1) && (pin2 == 1) && (pin1 == 0)) wert -= 10;
-  if ((pin5 == 1) && (pin2 == 0) && (pin1 == 1)) wert -= 3;
+  if ((pin5 == 1) && (pin2 == 1) && (pin1 == 0)) wert -= 20;
+  if ((pin5 == 1) && (pin2 == 0) && (pin1 == 1)) wert -= 4;
   if ((pin5 == 1) && (pin2 == 0) && (pin1 == 0)) wert -= 1;
   if ((pin5 == 0) && (pin2 == 1) && (pin1 == 0)) wert += 1;
-  if ((pin5 == 0) && (pin2 == 0) && (pin1 == 1)) wert += 3;
-  if ((pin5 == 0) && (pin2 == 0) && (pin1 == 0)) wert += 10;
+  if ((pin5 == 0) && (pin2 == 0) && (pin1 == 1)) wert += 4;
+  if ((pin5 == 0) && (pin2 == 0) && (pin1 == 0)) wert += 20;
   if (wert < 0) wert = 0;
   if (wert > maxwert) wert = maxwert;
   

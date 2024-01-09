@@ -33,7 +33,7 @@ Da dieser Prozessor im Interruptbetrieb arbeitet und die Steuerung zeitkritisch 
 empfiehlt sich das Zusammenlegen der Tasmota- und Dimmersoftware auf einem ESP8266 nicht.
 Beide Microcontroller sind über drei Steuerleitungen miteinander verbunden.
 
-![](https://www.ftonn.de/GIT-Projekte/Nulleinspeisung/solardimmer2.png)
+![Schaltplan](https://github.com/friedertonn/Nulleinspeisung/blob/main/fritzing/solardimmer_Schaltplan.png?raw=true)
 
 ## ESP8266 mit Tasmota-Software:
 Die aktuelle Version der Tasmota-Software steht auf der Github-Seite: https://github.com/arendst/Tasmota

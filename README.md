@@ -147,13 +147,13 @@ Die Aufgaben der Dimmersteuerung sind:
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
-        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-20% dimmen</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-8% dimmen</td>
     </tr>
     <tr>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
-        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-4% dimmen</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">-2% dimmen</td>
     </tr>
     <tr>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
@@ -177,20 +177,20 @@ Die Aufgaben der Dimmersteuerung sind:
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">HIGH</td>
-        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+4% dimmen</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+2% dimmen</td>
     </tr>
     <tr>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
         <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;" colspan="2">LOW</td>
-        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+20% dimmen</td>
+        <td style="border: 1px solid #bbb; border-bottom: 1px solid #bbb; padding: 10px 15px 10px 15px;">+8% dimmen</td>
     </tr>
     </tbody>
 </table>
 
 Die dazu notwendige Software **solardimmer.ino** befindet sich ebenfalls im Unterverzeichnis solardimmer.
 Das Kompilieren kann mit der Arduino-IDE erfolgen. Je nach der maximalen Leistung des angeschlossenen Verbrauchers
-(bei mir 500 Watt) und dem Takt der Datenbereitstellung (bei mir sind es 2,5 Sekunden) ist das Programm 
+(bei mir 1200 Watt) und dem Takt der Datenbereitstellung (bei mir sind es 2,5 Sekunden) ist das Programm 
 entsprechend anzupassen.
 Wenn keine Änderungen notwendig sind, kann auch die Binärdatei **solardimmer.ino.nodemcu.bin** mit dem
 NodeMCU-PyFlasher.exe auf den ESP8266 übertragen werden.
